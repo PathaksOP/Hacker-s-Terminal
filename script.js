@@ -2,7 +2,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const showLine = async () => {
   for (let i = 0; i < 5; i++) {
-    randomMS = Math.floor(Math.random() * (7000 - 1000 + 1) + 1000);
+    let randomMS = Math.floor(Math.random() * (7000 - 1000 + 1) + 1000);
     let div = document.querySelector(`#d${i + 1}`);
     await delay(randomMS);
     div.classList.remove("hidden");
@@ -20,7 +20,7 @@ const animateDots = (element) => {
   let d3 = document.createElement("p");
   d3.classList.add("hidden");
   d3.innerText = ".";
-  element.append(d1, d2, d3);
+  element.after(d1, d2, d3);
   let dots = [d1, d2, d3];
   setInterval(() => {
     dots.forEach((dot, index) => {
@@ -28,16 +28,16 @@ const animateDots = (element) => {
         () => {
           dot.classList.remove("hidden");
         },
-        500 * (index + 1),
+        200 * (index + 1)
       );
       setTimeout(
         () => {
           dot.classList.add("hidden");
         },
-        500 * (index + 2),
+        200 * (index + 4)
       );
     });
-  }, 3000);
+  }, 1800);
 };
 
 showLine();
